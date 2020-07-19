@@ -27,3 +27,15 @@
       repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
       state: present
       filename: kubernetese.file
+
+- name: Install kuber bins
+  apt:
+      name: "{{ packages }}"
+      state: present
+      update_cache: yes
+  vars:
+      - kubelet
+      - kubeadm
+      - kubectl
+
+
