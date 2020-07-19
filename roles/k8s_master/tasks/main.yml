@@ -28,6 +28,10 @@
       chdir: $Home
       creates: pod_network.txt
 
-- name: Generate join comman
+- name: Generate join command
   command: kubeadm token create --print-join-command
   register: join_command
+
+- name: Set join commnad as a fact
+  local_action: copy content="{{ join_command.stdout_lines[0] }}" dest="./join-command"
+  
