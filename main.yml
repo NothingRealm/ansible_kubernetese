@@ -1,0 +1,15 @@
+---
+- name: Install kuber_general
+  hosts: all
+  roles:
+      - k8s_general
+  
+- name: config master 
+  hosts: masters
+  roles:
+      - k8s_master
+  
+- name: config slave
+  hosts: slaves
+  roles:
+      - k8s_slave
