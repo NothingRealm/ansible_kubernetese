@@ -1,0 +1,8 @@
+- name: Copy the join command to server location
+  template:
+      src: join-command
+      dest: /tmp/join.sh
+      mode: 0777
+
+- name: join the node to cluster
+  command: sh /tmp/join.sh
