@@ -34,7 +34,8 @@
       state: present
       update_cache: yes
   vars:
-      - kubelet
-      - kubeadm
+      packages:
+          - kubelet
+          - kubeadm
 
 
