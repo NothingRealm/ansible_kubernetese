@@ -1,0 +1,23 @@
+---
+- name: install kubectl on master
+  apt:
+      name: kubectl
+      state: present
+
+- name: Remove cluster_init.txt
+  file:
+      path: $HOME/cluster_init.txt
+      state: absent
+
+- name: Init master
+  shell: kubeadm init --pod-network-cidr=10.244.0.0/24 >> cluster_init.txt
+  args:
+      chdir: $HOME
+      creates: cluster_init.txt
+
+- name: setup kubeconig
+  command: "{{ item }}"
+  with_items:
+    - mkdir -p /home/kuber/.kube
+    - cp -i /etc/kubernetes/admin.conf /home/kuber/.kube/config
+    - chown kuber:kuber /home/kube/.kube/config
