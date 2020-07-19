@@ -36,6 +36,5 @@
   vars:
       - kubelet
       - kubeadm
-      - kubectl
 
 
